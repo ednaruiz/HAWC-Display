@@ -59,7 +59,7 @@ void FINDSHOWERS(){//this function print the time interval for blocks of time gi
         
         if (contador>100){
             cout<<"Tin: "<<stepfind*(j-1)<<"  "<<"Tfin: "<<stepfind*(j)<<endl;
-            //TInterval(stepfind*(j-1) , stepfind*(j) );
+            TInterval(stepfind*(j-1) , stepfind*(j) );
             
             
             
