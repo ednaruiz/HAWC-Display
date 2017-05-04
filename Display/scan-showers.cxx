@@ -39,7 +39,8 @@ void TInterval(Double_t tinit,Double_t tfin){//gives the number of entry (final 
         if (TCalibratedTime == tinit){chinit=i;}
         if (TCalibratedTime == tfin){
             chfin=i;
-            skip = 1}
+            skip = 1;
+        }
         
     }
     chinit=chinit-2;
