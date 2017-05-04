@@ -44,7 +44,7 @@ void TInterval(int tinit, int tfin){//gives the number of entry (final and initi
 
 void FINDSHOWERS(){//this function print the time interval for blocks of time given by stepfind where ther are 100 or more events.
     unsigned k=1;
-    int stepfind=600;
+    int stepfind=200;
     float tinit = 0.0;
     float tfin = 0.0;
     int contador=0;
@@ -63,7 +63,7 @@ void FINDSHOWERS(){//this function print the time interval for blocks of time gi
             
         }
         
-        if (contador>100){
+        if (contador>50){
             hits->GetEntry(kinit);
             tinit = TCalibratedTime;
             hits->GetEntry(k);
