@@ -30,8 +30,8 @@ unsigned chfin=1;
 unsigned chinit=1;
 
 void TInterval(Double_t tinit,Double_t tfin){//gives the number of entry (final and initial) corresponding to tinterval
-    chfin = 1;
-    chinit = 1;
+    int chfin = 1;
+    int chinit = 1;
     int i = 0;
     int skip = 0;
     while (hits->GetEntry(i) && skip == 0 )
