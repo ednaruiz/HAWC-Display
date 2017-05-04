@@ -61,7 +61,8 @@ Psurvey = np.loadtxt("pmt-layout-03",usecols = (4 , 5) )
 def FindEntry(tinit,tfin):
     tinit_F = float(tinit)
     tfin_F = float(tfin)
-    chinit = 1
+    chinit = 0
+    chfin = 0 
     for i in range (0, entries):
         ientry = mychain.LoadTree( i )
         if ientry < 0:
@@ -74,9 +75,12 @@ def FindEntry(tinit,tfin):
 
         mychain.GetEntry(i)
         time =  mychain.CalibratedTime
-        if (time<=tinit_F): chinit = chinit + 1
-        else: break
-    return chinit-2
+        if (time == tinit_F): chinit = i-2
+        if (time == tfin_F): 
+          chfin = chfin + 2
+          break
+    print chinit,chfin
+    return chinit,chfin
 
 
 def PlayDisplayWGraph( tinit, tfin ):
@@ -87,16 +91,9 @@ def PlayDisplayWGraph( tinit, tfin ):
     C = "gray"
 
     steps = 10
-    i = FindEntry(tinit,tfin)
+    chinit,chfin = FindEntry(tinit,tfin)
     
-    jinit=tinit/steps;
-    jinit=jinit*steps;
-    jfin=tfin/steps;
-    jfin=(jfin*steps)+steps;
-    
-
-    
-    for jentry in np.arange(jinit+steps,jfin+steps,steps):
+    for jentry in np.arange(chinit+steps,chfin+steps,steps):
         fig ,ax = plt.subplots(num=None,  figsize=(12, 5), dpi=80, facecolor='w', edgecolor='k')
         plt.suptitle("HAWC Display")
         plt.subplot(121)
@@ -187,8 +184,7 @@ def PlayDisplayWGraph( tinit, tfin ):
 
 
 def PlayDisplay( tinit, tfin ):
-    pastT  = np.zeros(1200)
-    pastCh = np.zeros(1200)
+    
     
     C = "gray"
     
@@ -266,8 +262,9 @@ def GenGif(start,final):
 def main():
     
     if (graphsf == False):
-        PlayDisplay( start , final )
-        GenGif(start , final )
+        FindEntry(start , final )
+        #PlayDisplay( start , final )
+        #GenGif(start , final )
 
     else:
         PlayDisplayWGraph( start , final )
