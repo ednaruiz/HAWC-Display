@@ -27,18 +27,21 @@ UInt_t TChannel=0;
 //-------------FUNCTIONS--------
 
 
+
 void TInterval(Double_t tinit,Double_t tfin){//gives the number of entry (final and initial) corresponding to tinterval
     int chfin = 1;
     int chinit = 1;
     int i = 0;
     int skip = 0;
-    while (hits->GetEntry(i) && skip == 0 )
+    while (hits->GetEntry(i) && skip == 0 ){
         hits->GetEntry(i);
         if (TCalibratedTime == tinit){chinit=i;}
         if (TCalibratedTime == tfin){
             chfin=i;
             skip = 1;
         }
+    
+        i++
         
     }
     chinit=chinit-2;
