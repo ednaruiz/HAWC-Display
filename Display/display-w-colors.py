@@ -80,8 +80,8 @@ def FindEntry(tinit,tfin):
         if (time == tinit_F): 
           chinit = i-2
           print "CHINIT"
-        if (time == tfin_F): 
-          chfin = chfin + 2
+        if (time > tfin_F): 
+          chfin = i + 2
           print "breaku"
           break
     print chinit,chfin
