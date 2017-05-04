@@ -74,12 +74,13 @@ def FindEntry(tinit,tfin):
             continue
 
         mychain.GetEntry(i)
-        time =  mychain.CalibratedTime
-        print time
-        if (int(time) == tinit_F): 
+        time =  int(mychain.CalibratedTime)
+        print time,tinit_F,tfin_F
+        
+        if (time == tinit_F): 
           chinit = i-2
-          print chinit
-        if (int(time) == tfin_F): 
+          print "CHINIT"
+        if (time == tfin_F): 
           chfin = chfin + 2
           print "breaku"
           break
