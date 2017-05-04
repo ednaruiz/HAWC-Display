@@ -41,7 +41,7 @@ void TInterval(Double_t tinit,Double_t tfin){//gives the number of entry (final 
             skip = 1;
         }
     
-        i++
+        i++;
         
     }
     chinit=chinit-2;
