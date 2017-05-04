@@ -53,10 +53,12 @@ void FINDSHOWERS(){//this function print the time interval for blocks of time gi
         contador=0;
         unsigned kinit = k;
         while (hits->GetEntry(k) && TCalibratedTime<stepfind*j){
-            cout<<stepfind*j<<" "<<TCalibratedTime<<endl;
-            cout<<contador<<" "<<k<<" "<<kinit<<endl;
+            hits->GetEntry(k);
+            //cout<<stepfind*j<<" "<<TCalibratedTime<<endl;
+            
             contador++;
             k++;
+            cout<<contador<<" "<<k<<" "<<kinit<<endl;
             
             
         }
