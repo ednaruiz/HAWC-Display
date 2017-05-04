@@ -64,6 +64,7 @@ def FindEntry(tinit,tfin):
     chinit = 0
     chfin = 0 
     for i in range (0, entries):
+        print "Entry"
         ientry = mychain.LoadTree( i )
         if ientry < 0:
             break
@@ -75,9 +76,12 @@ def FindEntry(tinit,tfin):
 
         mychain.GetEntry(i)
         time =  mychain.CalibratedTime
-        if (time == tinit_F): chinit = i-2
+        if (time == tinit_F): 
+          chinit = i-2
+          print chinit
         if (time == tfin_F): 
           chfin = chfin + 2
+          print "breaku"
           break
     print chinit,chfin
     return chinit,chfin
@@ -262,6 +266,7 @@ def GenGif(start,final):
 def main():
     
     if (graphsf == False):
+        print "Finding entry"
         FindEntry(start , final )
         #PlayDisplay( start , final )
         #GenGif(start , final )
