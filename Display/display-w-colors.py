@@ -84,7 +84,7 @@ def FindEntry(tinit,tfin):
           chfin = i + 2
           print "breaku"
           break
-    print chinit,chfin
+    #print chinit,chfin
     return chinit,chfin
 
 
@@ -189,21 +189,21 @@ def PlayDisplayWGraph( tinit, tfin ):
 
 
 def PlayDisplay( tinit, tfin ):
-    
-    
-    C = "gray"
-    
+    C = "gray
     steps = 10
-    i = FindEntry(tinit,tfin)
+    CHIN = []
+    CHFIN = []
+    TIN = []
+    TFIN = []
     
-    jinit=tinit/steps;
-    jinit=jinit*steps;
-    jfin=tfin/steps;
-    jfin=(jfin*steps)+steps;
+    for it in np.arange(tinit,tfin,steps):
+        chinit, chfin = FindEntry(it,it+steps)
+        CHIN.append(chinit)
+        CHFIN.append(chfin)
+        TIN.append(it)
+        TFIN.append(it+steps)
     
-
-    
-    for jentry in np.arange(jinit+steps,jfin+steps,steps):
+    for istep in range(0,len(CHIN)):
         fig, ax = plt.subplots(num=None,  figsize=(6, 5), dpi=80, facecolor='w', edgecolor='k')
         plt.title("HAWC Display")
         plt.xlabel("Survey x [m]")
@@ -211,25 +211,24 @@ def PlayDisplay( tinit, tfin ):
         plt.xlim(-90,160)
         plt.ylim(150,345)
         
+        for iCh in np.arange(CHIN[istep],CHFIN[istep],1):
+          
+            ientry = mychain.LoadTree( iCh )
+            if ientry < 0:
+                break
         
+            # copy next entry into memory and verify
+            nb = mychain.GetEntry( iCh )
+            if nb <= 0:
+                continue
+            
+            ChargeT =  np.zeros(300)
+            ChargeP =  np.zeros(1200)
+            TimeP =  np.zeros(1200)
+            ChannelP = np.zeros(1200)
         
-                # get the next tree in the chain and verify
-        ientry = mychain.LoadTree( jentry )
-        if ientry < 0:
-            break
+            mychain.GetEntry(iCh)
         
-        # copy next entry into memory and verify
-        nb = mychain.GetEntry( jentry )
-        if nb <= 0:
-            continue
-        
-        
-        ChargeT =  np.zeros(300)
-        ChargeP =  np.zeros(1200)
-        TimeP =  np.zeros(1200)
-        ChannelP = np.zeros(1200)
-        while ( mychain.GetEntry(i) and mychain.CalibratedTime<jentry):
-            mychain.GetEntry(i)
             ichannel = mychain.Channel
             icharge  = mychain.CalibratedCharge
             itime = mychain.CalibratedTime
@@ -239,21 +238,20 @@ def PlayDisplay( tinit, tfin ):
             ChannelP[ichannel-1] = ichannel
             i = i+1
     
-        #print ChargeT
-        plt.scatter(Tsurvey[:,0]*0.01,Tsurvey[:,1]*0.01,s = 100, c = [ log(ich) for ich in ChargeT],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
-        plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10, c = [ log(ich) for ich in ChargeP],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
-        cbar = plt.colorbar()
-        cbar.set_label('log(Charge) [PE]')
+            plt.scatter(Tsurvey[:,0]*0.01,Tsurvey[:,1]*0.01,s = 100, c = [ log(ich) for ich in ChargeT],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
+            plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10, c = [ log(ich) for ich in ChargeP],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
+            cbar = plt.colorbar()
+            cbar.set_label('log(Charge) [PE]')
         
-        plt.scatter(Tsurvey[:,0]*0.01,Tsurvey[:,1]*0.01,s = 100,color=C,alpha=0.2)
-        plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10,color=C,alpha=0.2)
+            plt.scatter(Tsurvey[:,0]*0.01,Tsurvey[:,1]*0.01,s = 100,color=C,alpha=0.2)
+            plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10,color=C,alpha=0.2)
 
-        plt.text(-85,330,"Time: %i - %i ns"%(jentry-steps,jentry),fontsize=10)
+            plt.text(-85,330,"Time: %i - %i ns"%(TIN[istep],TFIN[istep]),fontsize=10)
 
 
 
-        plt.savefig("%i.png"%(jentry))
-        print "Image %i.png generated"%(jentry)
+        plt.savefig("%i.png"%(istep))
+        print "Image %i.png generated"%(istep)
         plt.close()
 
 def GenGif(start,final):
