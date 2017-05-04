@@ -26,8 +26,6 @@ UInt_t TChannel=0;
 
 //-------------FUNCTIONS--------
 
-unsigned chfin=1;
-unsigned chinit=1;
 
 void TInterval(Double_t tinit,Double_t tfin){//gives the number of entry (final and initial) corresponding to tinterval
     int chfin = 1;
