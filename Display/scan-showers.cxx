@@ -29,13 +29,18 @@ UInt_t TChannel=0;
 unsigned chfin=1;
 unsigned chinit=1;
 
-void TInterval(int tinit, int tfin){//gives the number of entry (final and initial) corresponding to tinterval
+void TInterval(Double_t tinit,Double_t tfin){//gives the number of entry (final and initial) corresponding to tinterval
     chfin = 1;
     chinit = 1;
-    for(unsigned i=0; i<(hits->GetEntries());i++){
+    int i = 0;
+    int skip = 0;
+    while (hits->GetEntry(i) && skip == 0 )
         hits->GetEntry(i);
-        if (TCalibratedTime<tinit){chinit++;}
-        if (TCalibratedTime<tfin){chfin++;}
+        if (TCalibratedTime == tinit){chinit=i;}
+        if (TCalibratedTime == tfin){
+            chfin=i;
+            skip = 1}
+        
     }
     chinit=chinit-2;
     chfin=chfin+2;
@@ -45,8 +50,8 @@ void TInterval(int tinit, int tfin){//gives the number of entry (final and initi
 void FINDSHOWERS(){//this function print the time interval for blocks of time given by stepfind where ther are 100 or more events.
     unsigned k=1;
     int stepfind=200;
-    float tinit = 0.0;
-    float tfin = 0.0;
+    Double_t tinit = 0.0;
+    Double_t tfin = 0.0;
     int contador=0;
     
     for ( unsigned j=1; j<(hits->GetEntries());j++ ){
