@@ -59,8 +59,8 @@ Psurvey = np.loadtxt("pmt-layout-03",usecols = (4 , 5) )
 
 
 def FindEntry(tinit,tfin):
-    tinit_F = float(tinit)
-    tfin_F = float(tfin)
+    tinit_F = int(tinit)
+    tfin_F = int(tfin)
     chinit = 0
     chfin = 0 
     for i in range (0, entries):
@@ -76,10 +76,10 @@ def FindEntry(tinit,tfin):
         mychain.GetEntry(i)
         time =  mychain.CalibratedTime
         print time
-        if (time == tinit_F): 
+        if (int(time) == tinit_F): 
           chinit = i-2
           print chinit
-        if (time == tfin_F): 
+        if (int(time) == tfin_F): 
           chfin = chfin + 2
           print "breaku"
           break
