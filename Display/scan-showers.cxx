@@ -70,7 +70,7 @@ void FINDSHOWERS(){//this function print the time interval for blocks of time gi
             tfin = TCalibratedTime;
             
             cout<<"Tin: "<<tinit<<"  "<<"Tfin: "<<tfin<<endl;
-            //TInterval(stepfind*(j-1) , stepfind*(j) );
+            TInterval(tinit,tfin );
             
             
             
