@@ -44,7 +44,7 @@ void TInterval(int tinit, int tfin){//gives the number of entry (final and initi
 
 void FINDSHOWERS(){//this function print the time interval for blocks of time given by stepfind where ther are 100 or more events.
     unsigned k=1;
-    int stepfind=200;
+    int stepfind=600;
     float tinit = 0.0;
     float tfin = 0.0;
     int contador=0;
@@ -58,7 +58,7 @@ void FINDSHOWERS(){//this function print the time interval for blocks of time gi
             
             contador++;
             k++;
-            cout<<contador<<" "<<k<<" "<<kinit<<endl;
+            //cout<<contador<<" "<<k<<" "<<kinit<<endl;
             
             
         }
