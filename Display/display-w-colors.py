@@ -132,6 +132,7 @@ def PlayDisplayWGraph( tinit, tfin ):
         iCh = iCh - 1
         cont = 0
         ChargeP =  np.zeros(1200)
+        TimeP = np.zeros(1200)
         
     TIME.append(np.zeros(1200))
     
