@@ -132,6 +132,7 @@ def PlayDisplayWGraph( tinit, tfin ):
         iCh = iCh - 1
         cont = 0
         ChargeP =  np.zeros(1200)
+        
     TIME.append(np.zeros(1200))
     
     for iEvent in range (0,len(CHARGE)):
@@ -141,6 +142,8 @@ def PlayDisplayWGraph( tinit, tfin ):
         ChargeT[int(floor((i)/4))] = ChargeT[int(floor((i)/4))] + CHARGE[iEvent][i]
 
       fig, ax = plt.subplots(num=None,  figsize=(12, 5), dpi=80, facecolor='w', edgecolor='k')
+      plt.suptitle("HAWC Display")
+      plt.subplot(121)
       plt.title("HAWC Display")
       plt.xlabel("Survey x [m]")
       plt.ylabel("Survey y [m]")
@@ -171,11 +174,15 @@ def PlayDisplayWGraph( tinit, tfin ):
       plt.ylabel("Number of events")
 
       plt.subplot(224)
-        
+      print sum(TIME[iEvent])
+      print sum(TIME[iEvent+1])
+      print sum(TIME[iEvent+2])
+
       plt.scatter(TIME[iEvent],TIME[iEvent],s = 5,color=C,alpha=0.3)
       plt.scatter(TIME[iEvent+1],TIME[iEvent+1],s = 5,color=C,alpha=0.9)      
       plt.scatter(TIME[iEvent+2],TIME[iEvent+2],s = 5,color=C,alpha=0.3)
-      plt.axhline(y=t0-steps, color='r', linestyle='-')
+      
+      plt.axhline(y=t0, color='r', linestyle='-')
       plt.axhline(y=tf, color='r', linestyle='-')
       ax = plt.gca()
       ax.ticklabel_format(useOffset=False)
