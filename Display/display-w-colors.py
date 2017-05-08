@@ -77,10 +77,10 @@ def FindEntry(tinit,tfin):
         
         if (time == tinit_F): 
           chinit = i-2
-          print "CHINIT"
+          #print "CHINIT"
         if (time > tfin_F): 
           chfin = i + 2
-          print "breaku"
+        #print "breaku"
           break
     #print chinit,chfin
     return chinit,chfin
@@ -195,8 +195,9 @@ def PlayDisplay( tinit, tfin ):
     CHFIN = []
     TIN = []
     TFIN = []
+    print np.arange(tinit,tfin+steps,steps)
     
-    for it in np.arange(tinit,tfin,steps):
+    for it in np.arange(tinit,tfin+steps,steps):
         chinit, chfin = FindEntry(it,it+steps)
         CHIN.append(chinit)
         CHFIN.append(chfin)
