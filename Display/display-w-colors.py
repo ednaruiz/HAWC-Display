@@ -199,7 +199,7 @@ def PlayDisplay( tinit, tfin ):
         
     j = 1.
     tstep = tinit + j*steps
-    
+    cont = 0
     for iCh in np.arange(chinit,chfin,1):
       ientry = mychain.LoadTree( iCh )
       if ientry < 0:
@@ -219,12 +219,14 @@ def PlayDisplay( tinit, tfin ):
       print itime 
       
       if (itime<tstep):
-         print itime,tstep,j
+        cont = cont + 1  
+        print itime,tstep,j
       else:
+        print cont
         j=j+1
         tstep = tinit + j*steps
         iCh = iCh - 1
-    
+        cont = 0
     '''
     CHIN = []
     CHFIN = []
