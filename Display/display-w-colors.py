@@ -197,6 +197,9 @@ def PlayDisplay( tinit, tfin ):
     TimeP =  np.zeros(1200)
     ChannelP = np.zeros(1200)
         
+    j = 1.
+    tstep = tinit + j*steps
+    
     for iCh in np.arange(chinit,chfin,1):
       ientry = mychain.LoadTree( iCh )
       if ientry < 0:
@@ -212,11 +215,13 @@ def PlayDisplay( tinit, tfin ):
         
       ichannel = mychain.Channel
       icharge  = mychain.CalibratedCharge
-      itime = mychain.CalibratedTime
+      itime = int(mychain.CalibratedTime)
       print itime 
-      j = 1.
-      tstep = tinit + j*steps
-     
+      
+      if (itime<tstep):
+         print itime,tstep,j
+      else:
+        j=j+1
     
     '''
     CHIN = []
