@@ -231,7 +231,7 @@ def PlayDisplay( tinit, tfin ):
       ChargeT = np.zeros(300)
       
       for i in range(0,1200):
-        ChargeT[int(floor((i-1)/4))] = ChargeT[int(floor((i-1)/4))] + CHARGE[iEvent][i]
+        ChargeT[int(floor((i)/4))] = ChargeT[int(floor((i)/4))] + CHARGE[iEvent][i]
 
       fig, ax = plt.subplots(num=None,  figsize=(6, 5), dpi=80, facecolor='w', edgecolor='k')
       plt.title("HAWC Display")
