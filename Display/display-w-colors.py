@@ -73,7 +73,7 @@ def FindEntry(tinit,tfin):
 
         mychain.GetEntry(i)
         time =  int(mychain.CalibratedTime)
-        print time,tinit_F,tfin_F
+        #print time,tinit_F,tfin_F
         
         if (time == tinit_F): 
           chinit = i-2
