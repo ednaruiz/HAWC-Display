@@ -1,12 +1,10 @@
 #======================================================================/
-# Author: Edna L. Ruiz Velasco                                         /
+# Author: Edna L. Ruiz Velasco    Hermes León Vargas                   /
 # HAWC Collaboration                                                   /
-# January 2017                                                         /
-# Read XCDF showers simulated and display the event plus linear array  /
+# 2016                                                                 /
+# Simple Display for RAW or extended preprocessed data                 /
 #                                                                      /
 #                                                                      /
-# For running TF in edna's mac run:  source ~/tensorflow/bin/activate  /
-# will load the virtual enviroment where TF is installed               /
 #                                                                      /
 #======================================================================/
 
