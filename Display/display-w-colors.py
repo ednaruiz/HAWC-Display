@@ -213,10 +213,9 @@ def PlayDisplay( tinit, tfin ):
       ichannel = mychain.Channel
       icharge  = mychain.CalibratedCharge
       itime = mychain.CalibratedTime
-      
+      print itime 
       j = 1.
       tstep = tinit + j*steps
-      if (itime<
      
     
     '''
