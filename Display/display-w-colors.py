@@ -187,7 +187,7 @@ def PlayDisplayWGraph( tinit, tfin ):
 
 
 def PlayDisplay( tinit, tfin ):
-    C = "gray
+    C = "gray"
     steps = 10
     CHIN = []
     CHFIN = []
