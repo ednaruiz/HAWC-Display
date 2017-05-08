@@ -193,7 +193,7 @@ def PlayDisplay( tinit, tfin ):
     chinit, chfin = FindEntry(tinit,tfin)
     
     ChargeP =  np.zeros(1200)
-        
+    
     j = 1.
     tstep = tinit + j*steps
     cont = 0
@@ -228,6 +228,11 @@ def PlayDisplay( tinit, tfin ):
         ChargeP =  np.zeros(1200)
     
     for iEvent in range (0,len(CHARGE)):
+      ChargeT = np.zeros(300)
+      
+      for i in range(0,1200):
+        ChargeT[int(floor((i-1)/4))] = ChargeT[int(floor((i-1)/4))] + CHARGE[iEvent][i]
+
       fig, ax = plt.subplots(num=None,  figsize=(6, 5), dpi=80, facecolor='w', edgecolor='k')
       plt.title("HAWC Display")
       plt.xlabel("Survey x [m]")
@@ -240,6 +245,7 @@ def PlayDisplay( tinit, tfin ):
       
       plt.scatter(Tsurvey[:,0]*0.01,Tsurvey[:,1]*0.01,s = 100,color=C,alpha=0.2)
       plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10,color=C,alpha=0.2)
+      plt.scatter(Tsurvey[:,0]*0.01,Tsurvey[:,1]*0.01,s = 100, c = [ log(ich) for ich in ChargeT ],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
       plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10, c = [ log(ich) for ich in CHARGE[iEvent] ],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
       cbar = plt.colorbar()
       cbar.set_label('log(Charge) [PE]')
