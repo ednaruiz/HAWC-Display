@@ -192,14 +192,13 @@ def PlayDisplay( tinit, tfin ):
 
     chinit, chfin = FindEntry(tinit,tfin)
     
-    ChargeT =  np.zeros(300)
     ChargeP =  np.zeros(1200)
-    TimeP =  np.zeros(1200)
-    ChannelP = np.zeros(1200)
         
     j = 1.
     tstep = tinit + j*steps
     cont = 0
+    
+    CHARGE = []
     for iCh in np.arange(chinit,chfin,1):
       ientry = mychain.LoadTree( iCh )
       if ientry < 0:
@@ -218,15 +217,29 @@ def PlayDisplay( tinit, tfin ):
       itime = int(mychain.CalibratedTime)
       
       if (itime<tstep):
-        cont = cont + 1  
-        print itime,tstep,j
+        ChargeP[ichannel]=icharge
+        #print itime,tstep,j
       else:
-        print cont,tstep,j
+        CHARGE.append(ChargeP)
         j=j+1
         tstep = tinit + j*steps
         iCh = iCh - 1
         cont = 0
+        ChargeP =  np.zeros(1200)
+        CHARGE.append(ChargeP)
+    
+    print len(CHARGE) 
+
     '''
+    
+    fig, ax = plt.subplots(num=None,  figsize=(6, 5), dpi=80, facecolor='w', edgecolor='k')
+    plt.title("HAWC Display")
+    plt.xlabel("Survey x [m]")
+    plt.ylabel("Survey y [m]")
+    plt.xlim(-90,160)
+    plt.ylim(150,345)
+    
+    
     CHIN = []
     CHFIN = []
     TIN = []
@@ -241,12 +254,7 @@ def PlayDisplay( tinit, tfin ):
         TFIN.append(it+steps)
     print CHIN,CHFIN,TIN,TFIN
     for istep in range(0,len(CHIN)):
-        fig, ax = plt.subplots(num=None,  figsize=(6, 5), dpi=80, facecolor='w', edgecolor='k')
-        plt.title("HAWC Display")
-        plt.xlabel("Survey x [m]")
-        plt.ylabel("Survey y [m]")
-        plt.xlim(-90,160)
-        plt.ylim(150,345)
+        
         
         for iCh in np.arange(CHIN[istep],CHFIN[istep],1):
           
