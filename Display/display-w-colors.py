@@ -1,5 +1,5 @@
 #======================================================================/
-# Author: Edna L. Ruiz Velasco    Hermes León Vargas                   /
+# Author: Edna L. Ruiz Velasco    Hermes Leon Vargas                   /
 # HAWC Collaboration                                                   /
 # 2016                                                                 /
 # Simple Display for RAW or extended preprocessed data                 /
