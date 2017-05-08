@@ -234,7 +234,6 @@ def PlayDisplay( tinit, tfin ):
             ChargeP[ichannel-1] = ChargeP[ichannel-1] + icharge
             TimeP[ichannel-1] = itime
             ChannelP[ichannel-1] = ichannel
-            i = i+1
     
             plt.scatter(Tsurvey[:,0]*0.01,Tsurvey[:,1]*0.01,s = 100, c = [ log(ich) for ich in ChargeT],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
             plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10, c = [ log(ich) for ich in ChargeP],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
