@@ -79,7 +79,7 @@ def FindEntry(tinit,tfin):
           chinit = i
           #print "CHINIT"
         if (time >= tfin_F): 
-          chfin = i + 1
+          chfin = i 
         #print "breaku"
           break
     #print chinit,chfin
