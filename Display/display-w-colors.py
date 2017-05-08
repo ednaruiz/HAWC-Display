@@ -265,7 +265,7 @@ def main():
     if (graphsf == False):
         print "Finding entry"
         FindEntry(start , final )
-        #PlayDisplay( start , final )
+        PlayDisplay( start , final )
         #GenGif(start , final )
 
     else:
