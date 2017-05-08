@@ -122,10 +122,10 @@ def PlayDisplayWGraph( tinit, tfin ):
       if (int(itime)<tstep):
         ChargeP[ichannel]=icharge
         TimeP[ichannel]=itime
-        print itime
+        #print itime
         #print itime,tstep,j
       else:
-        print [i for i in TimeP if i !=0]
+        
         CHARGE.append(ChargeP)
         TIME.append(TimeP)
         j=j+1
@@ -137,6 +137,7 @@ def PlayDisplayWGraph( tinit, tfin ):
         
     print len(TIME)
     print len(CHARGE)
+    
     for iEvent in range (0,len(CHARGE)):
       ChargeT = np.zeros(300)
       
@@ -176,8 +177,7 @@ def PlayDisplayWGraph( tinit, tfin ):
       plt.ylabel("Number of events")
 
       plt.subplot(224)
-      print sum(TIME[iEvent])
-
+      print [i for i in TIME[iEvent] if i !=0]
       plt.scatter(TIME[iEvent],TIME[iEvent],s = 10,color=C)
       #plt.scatter(TIME[iEvent+1],TIME[iEvent+1],s = 5,color=C,alpha=0.9)      
       #plt.scatter(TIME[iEvent+2],TIME[iEvent+2],s = 5,color=C,alpha=0.3)
