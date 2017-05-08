@@ -102,7 +102,7 @@ def PlayDisplayWGraph( tinit, tfin ):
     
     CHARGE = []
     TIME = []
-    
+    TIME.append(TimeP)
     for iCh in np.arange(chinit,chfin+2,1):
       ientry = mychain.LoadTree( iCh )
       if ientry < 0:
@@ -136,8 +136,7 @@ def PlayDisplayWGraph( tinit, tfin ):
         ChargeP =  np.zeros(1200)
         TimeP = np.zeros(1200)
         
-    print len(TIME)
-    print len(CHARGE)
+    TIME.append(np.zeros(1200))
     
     for iEvent in range (0,len(CHARGE)):
       ChargeT = np.zeros(300)
@@ -178,15 +177,15 @@ def PlayDisplayWGraph( tinit, tfin ):
       plt.ylabel("Number of events")
 
       plt.subplot(224)
-      plt.scatter(np.arange(0,1200,1),TIME[iEvent],s = 5, color = C)
-      #plt.scatter(TIME[iEvent+1],TIME[iEvent+1],s = 5,color=C,alpha=0.9)      
-      #plt.scatter(TIME[iEvent+2],TIME[iEvent+2],s = 5,color=C,alpha=0.3)
+      plt.scatter(np.arange(0,1200,1),TIME[iEvent],s = 5, color = C,alpha=0.9)
+      plt.scatter(np.arange(0,1200,1),TIME[iEvent+1],s = 5,color=C)      
+      plt.scatter(np.arange(0,1200,1),TIME[iEvent+2],s = 5,color=C,alpha=0.9)
       
       plt.axhline(y=t0, color='r', linestyle='-')
       plt.axhline(y=tf, color='r', linestyle='-')
       ax = plt.gca()
       ax.ticklabel_format(useOffset=False)
-      plt.ylim(t0-steps-steps,tf+steps+steps)
+      plt.ylim(t0-steps,tf+steps)
       plt.xlim(0.001,1200.001)
       plt.xlabel("PMT Channel")
       plt.ylabel("Time [ns]")
