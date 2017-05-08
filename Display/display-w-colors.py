@@ -14,9 +14,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import argparse
-from ROOT import *
 import os
-import pylab as P
 import sys
 from matplotlib.offsetbox import (TextArea, DrawingArea, OffsetImage,
                                   AnnotationBbox)
@@ -167,10 +165,9 @@ def PlayDisplayWGraph( tinit, tfin ):
       plt.subplots_adjust( right=0.9)
       
       plt.subplot(222)
-
-      n , bins , patches = P.hist([round(log(ich),2) for ich in CHARGE[iEvent] if ich != 0],30, histtype='stepfilled')
-
-      P.setp(patches, 'facecolor', 'g', 'alpha', 0.35)
+      if ( sum(CHARGE[iEvent]) != 0 ):
+        n , bins , patches = plt.hist([round(log(ich),2) for ich in CHARGE[iEvent] if ich != 0],30, histtype='stepfilled')
+        plt.setp(patches, 'facecolor', 'g', 'alpha', 0.35)
       plt.ylim(-0.01,10.01)
       plt.xlim(-1.01,10.01)
       plt.xlabel("log(Charge) [PE]")
