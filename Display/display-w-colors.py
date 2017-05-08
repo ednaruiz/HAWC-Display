@@ -227,77 +227,32 @@ def PlayDisplay( tinit, tfin ):
         cont = 0
         ChargeP =  np.zeros(1200)
     
-    print len(CHARGE) 
-
-    '''
+    for iEvent in range (0,len(CHARGE)):
     
-    fig, ax = plt.subplots(num=None,  figsize=(6, 5), dpi=80, facecolor='w', edgecolor='k')
-    plt.title("HAWC Display")
-    plt.xlabel("Survey x [m]")
-    plt.ylabel("Survey y [m]")
-    plt.xlim(-90,160)
-    plt.ylim(150,345)
-    
-    
-    CHIN = []
-    CHFIN = []
-    TIN = []
-    TFIN = []
-    print np.arange(tinit,tfin+steps,steps)
-    
-    for it in np.arange(tinit,tfin+steps,steps):
-        chinit, chfin = FindEntry(it,it+steps)
-        CHIN.append(chinit)
-        CHFIN.append(chfin)
-        TIN.append(it)
-        TFIN.append(it+steps)
-    print CHIN,CHFIN,TIN,TFIN
-    for istep in range(0,len(CHIN)):
-        
-        
-        for iCh in np.arange(CHIN[istep],CHFIN[istep],1):
-          
-            ientry = mychain.LoadTree( iCh )
-            if ientry < 0:
-                break
-        
-            # copy next entry into memory and verify
-            nb = mychain.GetEntry( iCh )
-            if nb <= 0:
-                continue
-            
-            ChargeT =  np.zeros(300)
-            ChargeP =  np.zeros(1200)
-            TimeP =  np.zeros(1200)
-            ChannelP = np.zeros(1200)
-        
-            mychain.GetEntry(iCh)
-        
-            ichannel = mychain.Channel
-            icharge  = mychain.CalibratedCharge
-            itime = mychain.CalibratedTime
-            ChargeT[int(floor((ichannel-1)/4))] = ChargeT[int(floor((ichannel-1)/4))] + icharge
-            ChargeP[ichannel-1] = ChargeP[ichannel-1] + icharge
-            TimeP[ichannel-1] = itime
-            ChannelP[ichannel-1] = ichannel
-    
-            
-            plt.scatter(Tsurvey[:,0]*0.01,Tsurvey[:,1]*0.01,s = 100, c = [ log(ich) for ich in ChargeT],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
-            plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10, c = [ log(ich) for ich in ChargeP],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
-            cbar = plt.colorbar()
-            cbar.set_label('log(Charge) [PE]')
-        
-            plt.scatter(Tsurvey[:,0]*0.01,Tsurvey[:,1]*0.01,s = 100,color=C,alpha=0.2)
-            plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10,color=C,alpha=0.2)
-
-            plt.text(-85,330,"Time: %i - %i ns"%(TIN[istep],TFIN[istep]),fontsize=10)
+      fig, ax = plt.subplots(num=None,  figsize=(6, 5), dpi=80, facecolor='w', edgecolor='k')
+      plt.title("HAWC Display")
+      plt.xlabel("Survey x [m]")
+      plt.ylabel("Survey y [m]")
+      plt.xlim(-90,160)
+      plt.ylim(150,345)
+      
+      t0 = tinit + iEvent*steps
+      tf = tinit + (iEvent+1)*steps
+      
+      plt.scatter(Tsurvey[:,0]*0.01,Tsurvey[:,1]*0.01,s = 100,color=C,alpha=0.2)
+      plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10,color=C,alpha=0.2)
+      plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10, c = [ log(ich) for ich in ChargeP],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
+      cbar = plt.colorbar()
+      cbar.set_label('log(Charge) [PE]')
+      plt.text(-85,330,"Time: %i - %i ns"%(t0,tf),fontsize=10)
 
 
 
-        plt.savefig("%i.png"%(istep))
-        print "Image %i.png generated"%(istep)
-        plt.close()
-    '''
+      plt.savefig("%i.png"%(iEvent))
+      print "Image %i.png generated"%(iEvent)
+      plt.close()
+      
+    
     
 def GenGif(start,final):
     print "Generating gif..."
