@@ -46,7 +46,7 @@ void TInterval(Double_t tinit,Double_t tfin){//gives the number of entry (final 
     }
     chinit=chinit-2;
     chfin=chfin+2;
-    cout<<"Chinit: "<<chinit<<" "<<"Chfin: "<<chfin<<"\n"<<endl;
+    //cout<<"Chinit: "<<chinit<<" "<<"Chfin: "<<chfin<<"\n"<<endl;
 }
 
 void FINDSHOWERS(){//this function print the time interval for blocks of time given by stepfind where ther are 100 or more events.
@@ -76,7 +76,7 @@ void FINDSHOWERS(){//this function print the time interval for blocks of time gi
             hits->GetEntry(k);
             tfin = TCalibratedTime;
             
-            cout<<"Tin: "<<tinit<<"  "<<"Tfin: "<<tfin<<endl;
+            cout<<"Tin: "<<int(tinit)<<"  "<<"Tfin: "<<int(tfin)<<endl;
             TInterval(tinit,tfin );
             
             
