@@ -78,7 +78,7 @@ def FindEntry(tinit,tfin):
         if (time == tinit_F): 
           chinit = i-2
           #print "CHINIT"
-        if (time > tfin_F): 
+        if (time == tfin_F): 
           chfin = i + 2
         #print "breaku"
           break
@@ -190,7 +190,33 @@ def PlayDisplay( tinit, tfin ):
     C = "gray"
     steps = 10
 
+    chinit, chfin = FindEntry(tinit,tfin)
+    
+    ChargeT =  np.zeros(300)
+    ChargeP =  np.zeros(1200)
+    TimeP =  np.zeros(1200)
+    ChannelP = np.zeros(1200)
+        
+    for iCh in np.arange(chinit,chfin,1):
+      ientry = mychain.LoadTree( iCh )
+      if ientry < 0:
+        break
+        
+      # copy next entry into memory and verify
+      nb = mychain.GetEntry( iCh )
+      if nb <= 0:
+        continue
+            
       
+      mychain.GetEntry(iCh)
+        
+      ichannel = mychain.Channel
+      icharge  = mychain.CalibratedCharge
+      itime = mychain.CalibratedTime
+      
+      print itime            
+    
+    '''
     CHIN = []
     CHFIN = []
     TIN = []
@@ -204,7 +230,6 @@ def PlayDisplay( tinit, tfin ):
         TIN.append(it)
         TFIN.append(it+steps)
     print CHIN,CHFIN,TIN,TFIN
-    '''
     for istep in range(0,len(CHIN)):
         fig, ax = plt.subplots(num=None,  figsize=(6, 5), dpi=80, facecolor='w', edgecolor='k')
         plt.title("HAWC Display")
