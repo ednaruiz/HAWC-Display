@@ -222,6 +222,7 @@ def PlayDisplay( tinit, tfin ):
          print itime,tstep,j
       else:
         j=j+1
+        tstep = tinit + j*steps
     
     '''
     CHIN = []
