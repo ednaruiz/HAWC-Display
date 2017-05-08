@@ -76,10 +76,10 @@ def FindEntry(tinit,tfin):
         #print time,tinit_F,tfin_F
         
         if (time <= tinit_F): 
-          chinit = i-2
+          chinit = i
           #print "CHINIT"
         if (time >= tfin_F): 
-          chfin = i + 2
+          chfin = i + 1
         #print "breaku"
           break
     #print chinit,chfin
@@ -214,7 +214,10 @@ def PlayDisplay( tinit, tfin ):
       icharge  = mychain.CalibratedCharge
       itime = mychain.CalibratedTime
       
-      print itime            
+      j = 1.
+      tstep = tinit + j*steps
+      if (itime<
+     
     
     '''
     CHIN = []
