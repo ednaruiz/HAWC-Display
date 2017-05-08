@@ -189,6 +189,8 @@ def PlayDisplayWGraph( tinit, tfin ):
 def PlayDisplay( tinit, tfin ):
     C = "gray"
     steps = 10
+
+      
     CHIN = []
     CHFIN = []
     TIN = []
@@ -200,7 +202,8 @@ def PlayDisplay( tinit, tfin ):
         CHFIN.append(chfin)
         TIN.append(it)
         TFIN.append(it+steps)
-    
+    print CHIN,CHFIN,TIN,TFIN
+    '''
     for istep in range(0,len(CHIN)):
         fig, ax = plt.subplots(num=None,  figsize=(6, 5), dpi=80, facecolor='w', edgecolor='k')
         plt.title("HAWC Display")
@@ -235,6 +238,7 @@ def PlayDisplay( tinit, tfin ):
             TimeP[ichannel-1] = itime
             ChannelP[ichannel-1] = ichannel
     
+            
             plt.scatter(Tsurvey[:,0]*0.01,Tsurvey[:,1]*0.01,s = 100, c = [ log(ich) for ich in ChargeT],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
             plt.scatter(Psurvey[:,0]*0.01,Psurvey[:,1]*0.01,s = 10, c = [ log(ich) for ich in ChargeP],cmap=plt.cm.jet , vmin=1, vmax = 10 , alpha=0.5)
             cbar = plt.colorbar()
@@ -250,7 +254,8 @@ def PlayDisplay( tinit, tfin ):
         plt.savefig("%i.png"%(istep))
         print "Image %i.png generated"%(istep)
         plt.close()
-
+    '''
+    
 def GenGif(start,final):
     print "Generating gif..."
     os.system('convert -delay 23 -loop 0 *.png %i-to-%i.gif'%(start,final))
