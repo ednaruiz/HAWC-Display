@@ -226,7 +226,6 @@ def PlayDisplay( tinit, tfin ):
         iCh = iCh - 1
         cont = 0
         ChargeP =  np.zeros(1200)
-        CHARGE.append(ChargeP)
     
     print len(CHARGE) 
 
