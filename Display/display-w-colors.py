@@ -125,7 +125,7 @@ def PlayDisplayWGraph( tinit, tfin ):
         print itime
         #print itime,tstep,j
       else:
-        print TimeP
+        print [i for i in TimeP if i !=0]
         CHARGE.append(ChargeP)
         TIME.append(TimeP)
         j=j+1
