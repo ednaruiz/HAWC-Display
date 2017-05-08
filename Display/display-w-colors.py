@@ -199,7 +199,7 @@ def PlayDisplay( tinit, tfin ):
     cont = 0
     
     CHARGE = []
-    for iCh in np.arange(chinit,chfin,1):
+    for iCh in np.arange(chinit,chfin+2,1):
       ientry = mychain.LoadTree( iCh )
       if ientry < 0:
         break
