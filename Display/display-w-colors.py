@@ -27,7 +27,7 @@ pars = argparse.ArgumentParser(description='Display for hits format file')
 pars.add_argument('-i' , '--input' , help='input file' , dest="infile" , metavar="FILE")
 pars.add_argument('-s' , '--start' , help='Start Time' , dest="start")
 pars.add_argument('-f' , '--final' , help='Final Time' , dest="final")
-pars.add_argument('--graphs', action="store_true" , dest="graphsf", help='Display with graphs flag', default=False)
+pars.add_argument('--graph', action="store_true" , dest="graphsf", help='Display with graphs flag', default=False)
 
 
 
