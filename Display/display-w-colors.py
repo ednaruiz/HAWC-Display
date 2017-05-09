@@ -14,6 +14,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import argparse
+from ROOT import *
 import os
 import sys
 from matplotlib.offsetbox import (TextArea, DrawingArea, OffsetImage,
