@@ -263,7 +263,7 @@ def PlayDisplay( tinit, tfin ):
 
 
 
-      plt.savefig("%i.png"%(iEvent))
+      plt.savefig("%03i.png"%(iEvent))
       print "Image %i.png generated"%(iEvent)
       plt.close()
       
